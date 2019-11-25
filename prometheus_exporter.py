@@ -95,8 +95,15 @@ class MetricsCollector(object):
 
     def describe(self):
         return []
-
+    
     def collect(self):
+        yield GaugeMetricFamily('my_gauge', 'Help text', value=7)
+        c = CounterMetricFamily('my_counter_total', 'Help text', labels=['foo'])
+        c.add_metric(['bar'], 1.7)
+        c.add_metric(['baz'], 3.8)
+        yield c
+
+    def collect_old(self):
         '''collect metrics'''
 
         # Task metrics
@@ -146,7 +153,7 @@ class MetricsCollector(object):
             yield dag_duration
 
 
-REGISTRY.register()
+REGISTRY.register(MetricsCollector())
 
 if settings.RBAC:
     from flask_appbuilder import BaseView as FABBaseView, expose as FABexpose
