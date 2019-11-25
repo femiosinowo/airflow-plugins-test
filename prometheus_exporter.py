@@ -146,7 +146,7 @@ class MetricsCollector(object):
             yield dag_duration
 
 
-REGISTRY.register(MetricsCollector())
+'REGISTRY.register(MetricsCollector())
 
 if settings.RBAC:
     from flask_appbuilder import BaseView as FABBaseView, expose as FABexpose
