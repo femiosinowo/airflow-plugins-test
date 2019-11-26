@@ -96,10 +96,8 @@ class MetricsCollector(object):
     def describe(self):
         return []
     
-    def collect(self):
-        yield GaugeMetricFamily('test_metrics', 'This is a blanc metric', value=7)
 
-    def collect_old(self):
+    def collect(self):
         '''collect metrics'''
 
         # Task metrics
